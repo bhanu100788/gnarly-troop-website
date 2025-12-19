@@ -1,0 +1,209 @@
+// "use client";
+
+// import React, { useEffect, useState } from "react";
+// import * as XLSX from "xlsx";
+
+// type Registration = {
+//   id: number;
+//   name: string;
+//   email: string;
+//   phone: string;
+//   gender?: string | null;
+//   state?: string | null;
+//   district?: string | null;
+//   organization?: string | null;
+//   designation?: string | null;
+//   termsAccepted: boolean;
+//   createdAt: string; // JSON from API will be a string
+// };
+
+// export default function AdminRegistrationsPage() {
+//   const [data, setData] = useState<Registration[]>([]);
+
+//   const fetchData = async () => {
+//     const res = await fetch("/api/get-registration");
+//     if (!res.ok) {
+//       console.error("API error:", res.status);
+//       return;
+//     }
+//     const json: Registration[] = await res.json();
+//     setData(json);
+//   };
+
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
+
+//   const downloadCSV = () => {
+//     const csvRows: string[] = [];
+
+//     const headers = [
+//       "ID",
+//       "Name",
+//       "Email",
+//       "Phone",
+//       "Gender",
+//       "State",
+//       "District",
+//       "Organization",
+//       "Designation",
+//       "TermsAccepted",
+//       "CreatedAt",
+//     ];
+
+//     csvRows.push(headers.join(","));
+
+//     data.forEach((row) => {
+//       csvRows.push(
+//         [
+//           row.id,
+//           row.name,
+//           row.email,
+//           row.phone,
+//           row.gender || "",
+//           row.state || "",
+//           row.district || "",
+//           row.organization || "",
+//           row.designation || "",
+//           row.termsAccepted ? "Yes" : "No",
+//           row.createdAt,
+//         ].join(",")
+//       );
+//     });
+
+//     const blob = new Blob([csvRows.join("\n")], { type: "text/csv" });
+//     const url = window.URL.createObjectURL(blob);
+
+//     const a = document.createElement("a");
+//     a.href = url;
+//     a.download = "registrations.csv";
+//     a.click();
+//     window.URL.revokeObjectURL(url);
+//   };
+
+//   const downloadExcel = () => {
+//     const worksheet = XLSX.utils.json_to_sheet(
+//       data.map((row) => ({
+//         ID: row.id,
+//         Name: row.name,
+//         Email: row.email,
+//         Phone: row.phone,
+//         Gender: row.gender ?? "",
+//         State: row.state ?? "",
+//         District: row.district ?? "",
+//         Organization: row.organization ?? "",
+//         Designation: row.designation ?? "",
+//         TermsAccepted: row.termsAccepted ? "Yes" : "No",
+//         CreatedAt: row.createdAt,
+//       }))
+//     );
+
+//     const workbook = XLSX.utils.book_new();
+//     XLSX.utils.book_append_sheet(workbook, worksheet, "Registrations");
+
+//     XLSX.writeFile(workbook, "registrations.xlsx");
+//   };
+
+//   return (
+//     <div style={{ padding: "30px" }}>
+//       <h1 style={{ marginBottom: "20px" }}>Admin – Registrations</h1>
+
+//       {/* Export Buttons */}
+//       <div style={{ marginBottom: "20px", display: "flex", gap: "10px" }}>
+//         <button
+//           onClick={downloadCSV}
+//           style={{
+//             padding: "10px 16px",
+//             background: "#2e7d32",
+//             color: "#fff",
+//             borderRadius: "6px",
+//             border: "none",
+//             cursor: "pointer",
+//           }}
+//         >
+//           Download CSV
+//         </button>
+
+//         <button
+//           onClick={downloadExcel}
+//           style={{
+//             padding: "10px 16px",
+//             background: "#1565c0",
+//             color: "#fff",
+//             borderRadius: "6px",
+//             border: "none",
+//             cursor: "pointer",
+//           }}
+//         >
+//           Download Excel
+//         </button>
+//       </div>
+
+//       {/* Data Table */}
+//       <div
+//         style={{
+//           overflowX: "auto",
+//           border: "1px solid #ddd",
+//           borderRadius: "8px",
+//         }}
+//       >
+//         <table
+//           style={{
+//             width: "100%",
+//             borderCollapse: "collapse",
+//             fontSize: "14px",
+//             minWidth: "1000px",
+//           }}
+//         >
+//           <thead>
+//             <tr style={{ background: "#f5f5f5" }}>
+//               <th style={th}>ID</th>
+//               <th style={th}>Name</th>
+//               <th style={th}>Email</th>
+//               <th style={th}>Phone</th>
+//               <th style={th}>Gender</th>
+//               <th style={th}>State</th>
+//               <th style={th}>District</th>
+//               <th style={th}>Org</th>
+//               <th style={th}>Designation</th>
+//               <th style={th}>Terms</th>
+//               <th style={th}>Created</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {data.map((row) => (
+//               <tr key={row.id} style={{ borderBottom: "1px solid #eee" }}>
+//                 <td style={td}>{row.id}</td>
+//                 <td style={td}>{row.name}</td>
+//                 <td style={td}>{row.email}</td>
+//                 <td style={td}>{row.phone}</td>
+//                 <td style={td}>{row.gender}</td>
+//                 <td style={td}>{row.state}</td>
+//                 <td style={td}>{row.district}</td>
+//                 <td style={td}>{row.organization}</td>
+//                 <td style={td}>{row.designation}</td>
+//                 <td style={td}>{row.termsAccepted ? "Yes" : "No"}</td>
+//                 <td style={td}>
+//                   {row.createdAt
+//                     ? new Date(row.createdAt).toLocaleString()
+//                     : ""}
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// }
+
+// const th: React.CSSProperties = {
+//   padding: "10px",
+//   borderBottom: "1px solid #ddd",
+//   fontWeight: "bold",
+//   textAlign: "left",
+// };
+
+// const td: React.CSSProperties = {
+//   padding: "8px",
+// };

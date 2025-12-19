@@ -1,0 +1,316 @@
+"use client";
+
+import { useRef, useState } from "react";
+
+import Image from "next/image";
+import styles from "@/app/4cvision/culture/SectionCulture.module.css";
+
+// const SectionCommunity: React.FC = () => {
+export default function SectionCommunity() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  return (
+    <section className={styles.sectionCulture}>
+      {/* Title and Video section */}
+      <div className={styles.topTealBand}>
+        <div className={styles.inner}>
+          <center>
+            <h1 className={styles.pageTitle}>CULTURE</h1>
+            <h1 className={styles.pageSubTitle}>
+              REVIVING CIVILIZATION, IGNITING IDENTITY
+            </h1>
+          </center>
+
+          <p className={styles.lead}>
+            Culture is consciousness; it is the essence of civilization, not
+            mere performance. India’s heritage spans millennia—from Vedic wisdom
+            to scientific discovery, from spirituality to statecraft—shaping the
+            world’s moral and intellectual compass. GTGF’s Culture Pillar
+            restores this legacy by reconnecting youth and global communities
+            with living heritage through traditional arts, indigenous knowledge,
+            language preservation, yoga, Ayurveda, heritage walks, and digital
+            archives.
+          </p>
+          <p className={styles.lead}>
+            Technology safeguards tradition, while youth become Cultural
+            Custodians, promoting Indian wisdom globally. Through intercultural
+            dialogue, artistic exchanges, spiritual tourism, and international
+            delegations, GTGF elevates India’s role as a moral and spiritual
+            teacher. Cultural revival becomes a vehicle for identity,
+            consciousness, and global civilizational leadership.
+          </p>
+          <br />
+          <br />
+
+          {/* Hero “video in device” frame */}
+          {/* ------------------------------- */}
+          <div className={styles.heroFrame}>
+            <div className={styles.heroScreen}>
+              <video
+                ref={videoRef}
+                className={styles.heroVideo}
+                src="/hero.mp4"
+                // poster="/images/logos/logo-1.png"
+                playsInline
+                controls // 👈 this shows play, pause, fullscreen, etc.
+              />
+
+              {!isPlaying && (
+                <button
+                  className={styles.playButton}
+                  aria-label="Play video"
+                  onClick={handlePlay}
+                >
+                  <span className={styles.playIcon} />
+                </button>
+              )}
+            </div>
+          </div>
+          {/* ------------------------------- */}
+        </div>
+      </div>
+
+      {/* Featured article strip */}
+      <section className={styles.featuredStrip}>
+        <div className={styles.inner}>
+          <div className={styles.featuredCard}>
+            <div className={styles.featuredText}>
+              <p className={styles.featuredKicker}>FEATURED ARTICLE</p>
+              <h2 className={styles.featuredTitle}>
+                Reconnecting youth and the world to India’s timeless heritage,
+                transforming culture into global leadership and conscious
+                identity.
+              </h2>
+              <p className={styles.featuredBody}>
+                See how a partnership between Lagos State, a bank, and local
+                innovators is using digital tools to empower small businesses in
+                markets across India.
+              </p>
+              {/* <button className={styles.yellowButton}>Read the story</button> */}
+            </div>
+            <div className={styles.featuredImageWrap}>
+              <img
+                src="\images\visions\culture\feature-article.jpg"
+                alt="Market vendors laughing together"
+                className={styles.featuredImage}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main article grid */}
+      <section className={styles.articleSection}>
+        <div className={styles.inner}>
+          {/* Two larger top cards */}
+          <div className={styles.topArticleGrid}>
+            <article className={styles.largeArticle}>
+              <div className={styles.largeImageWrap}>
+                <img
+                  src="\images\visions\culture\section-1.jpg"
+                  alt="Woman with children"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.largeContent}>
+                <p className={styles.cardKicker}>DEVELOPMENT FINANCE</p>
+                <h3 className={styles.cardTitle}>
+                  NEEDS A RESET, NOT A RETREAT
+                </h3>
+                <p className={styles.cardBody}>
+                  George Okoth talks about how development finance can unlock
+                  climate-smart solutions and support opportunity.
+                </p>
+              </div>
+            </article>
+
+            <article className={styles.largeArticle}>
+              <div className={styles.largeImageWrap}>
+                <img
+                  src="\images\visions\culture\section-2.jpg"
+                  alt="Green culture garden"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.largeContent}>
+                <p className={styles.cardKicker}>THE GARDEN OF THE FUTURE</p>
+                <h3 className={styles.cardTitle}>
+                  HOW SMALL CHANGES CREATE BIG IMPACTS
+                </h3>
+                <p className={styles.cardBody}>
+                  At the heart of “Welcome to My Country – India (Padharo Mhare
+                  Desh Bharat)” lies a powerful celebration of India’s living
+                  heritage. Gnarly Troop Global Federation creates a global
+                  platform where folk artists, tribal communities, historians,
+                  spiritual leaders, and youth ambassadors unite to showcase
+                  India’s timeless traditions. Through cultural exhibitions,
+                  performances, storytelling, crafts, culinary arts, and
+                  language preservation programs, the initiative strengthens
+                  national identity and builds meaningful international cultural
+                  bonds. Every exchange becomes a bridge connecting
+                  civilizations while reviving fading traditions and empowering
+                  local custodians of heritage. By transforming culture into a
+                  living global dialogue, Gnarly Troop reinforces India’s role
+                  as a world teacher—leading humanity toward unity, respect, and
+                  shared understanding under the vision of Viksit Bharat.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          {/* 3 x 2 smaller cards */}
+          <div className={styles.smallGrid}>
+            <article className={styles.smallCard}>
+              <div className={styles.smallImageWrap}>
+                <img
+                  src="\images\visions\culture\img-1.jpg"
+                  alt="Kenyan farmer"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.smallContent}>
+                <h4 className={styles.smallTitle}>
+                  Meet the Kenyan farmer helping her culture grow food in a
+                  changing climate
+                </h4>
+                <p className={styles.smallBody}>
+                  New irrigation techniques and access to credit are helping
+                  families grow more with less water.
+                </p>
+              </div>
+            </article>
+
+            <article className={styles.smallCard}>
+              <div className={styles.smallImageWrap}>
+                <img
+                  src="\images\visions\culture\img-2.jpg"
+                  alt="Scientist in field"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.smallContent}>
+                <h4 className={styles.smallTitle}>
+                  Meet the innovator: This scientist is building the beans of
+                  the future
+                </h4>
+                <p className={styles.smallBody}>
+                  Climate-resilient crops are protecting harvests and incomes
+                  for farmers across Africa.
+                </p>
+              </div>
+            </article>
+
+            <article className={styles.smallCard}>
+              <div className={styles.smallImageWrap}>
+                <img
+                  src="\images\visions\culture\img-3.jpg"
+                  alt="Doctor smiling"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.smallContent}>
+                <h4 className={styles.smallTitle}>
+                  A doctor at the intersection of women&apos;s health and
+                  economic power
+                </h4>
+                <p className={styles.smallBody}>
+                  Accessible care and financial tools are unlocking opportunity
+                  for women entrepreneurs.
+                </p>
+              </div>
+            </article>
+
+            <article className={styles.smallCard}>
+              <div className={styles.smallImageWrap}>
+                <img
+                  src="\images\visions\culture\img-4.jpg"
+                  alt="Woman preparing food"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.smallContent}>
+                <h4 className={styles.smallTitle}>
+                  Q&amp;A: How strengthening the care economy can boost
+                  women&apos;s workforce participation
+                </h4>
+              </div>
+            </article>
+
+            <article className={styles.smallCard}>
+              <div className={styles.smallImageWrap}>
+                <img
+                  src="\images\visions\culture\img-5.jpg"
+                  alt="Woman speaking at event"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.smallContent}>
+                <h4 className={styles.smallTitle}>
+                  Why digital public infrastructure matters
+                </h4>
+                <p className={styles.smallBody}>
+                  Secure digital systems can help deliver climate assistance and
+                  social protection faster.
+                </p>
+              </div>
+            </article>
+
+            <article className={styles.smallCard}>
+              <div className={styles.smallImageWrap}>
+                <img
+                  src="\images\visions\culture\img-6.jpg"
+                  alt="Entrepreneur in workshop"
+                  className={styles.cardImage}
+                />
+              </div>
+              <div className={styles.smallContent}>
+                <h4 className={styles.smallTitle}>
+                  Designing credit that works for women
+                </h4>
+                <p className={styles.smallBody}>
+                  Flexible products help women invest in businesses and adapt to
+                  climate shocks.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter & giving strip */}
+      {/* <section className={styles.bottomStrip}>
+        <div className={styles.inner}>
+          <div className={styles.bottomGrid}>
+            <div className={styles.givingBlock}>
+              <div className={styles.givingText}>
+                <p className={styles.givingKicker}>
+                  INTERESTED IN GIVING TO GRANTEES WE SUPPORT?
+                </p>
+                <button className={styles.yellowButton}>
+                  Learn more at Gates Philanthropy Partners
+                </button>
+              </div>
+              <div className={styles.givingImageWrap}>
+                <img
+                  src="https://www.gatesfoundation.org/-/media/gfo/5ideas_articles/progress/ga17166080_ae652095.jpg?rev=c017067a0ba64e408b1cd17528c1feff&w=1600&hash=76B6C21F4A71D2018AED07F64C5C43C4"
+                  alt="Two women talking on a bench"
+                  className={styles.givingImage}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+    </section>
+  );
+}
+
+// export default SectionCommunity;

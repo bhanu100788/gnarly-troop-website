@@ -1,0 +1,156 @@
+npx prisma db pull // this command use to sync tables from database
+npx prisma generate // call after above command
+
+npm install xlsx // to install excel library
+
+npm install mssql // install MsSql library
+
+rm -rf .next        // to delete next build folder
+npm run build       // to build next project again
+
+
+/_------------- PROJECT CLEAUP -------------_/
+/_------------- START -------------_/
+1️⃣ Detect unused dependencies (MOST IMPORTANT)
+//Install dependency checker
+npm install -D depcheck
+
+//Run it
+npx depcheck
+
+//Output example
+Unused dependencies
+➡️ axios
+➡️ lodash
+➡️ moment
+Unused devDependencies
+➡️ eslint-plugin-react
+
+2️⃣ Remove unused libraries automatically
+//Remove normal dependencies
+npm uninstall axios lodash moment
+
+//Remove dev dependencies
+npm uninstall eslint-plugin-react --save-dev
+
+3️⃣ Remove orphaned packages (VERY IMPORTANT)
+
+//After uninstalling libraries:
+rm -rf node_modules package-lock.json
+npm install
+
+This will:
+➡️ Cleans unused transitive dependencies
+➡️ Fixes corrupted installs
+➡️ Reduces node_modules size
+
+4️⃣ Remove unused imports from code (CODE LEVEL CLEANUP)
+Option A: ESLint (recommended)
+
+    Add rules:
+
+    "rules": {
+    "no-unused-vars": "error",
+    "unused-imports/no-unused-imports": "error"
+    }
+
+    Install plugin:
+
+    npm install -D eslint-plugin-unused-imports
+
+    Auto-fix:
+
+    npx eslint . --fix
+
+    Option B: TypeScript compiler
+    npx tsc --noEmit
+
+    It will show:
+
+    unused imports
+
+    unreachable code
+
+    dead exports
+
+5️⃣ Remove unused scripts & configs
+
+Check & clean:
+
+package.json
+"scripts": {
+"lint": "...",
+"prisma": "...", ❌ remove if unused
+"storybook": "..." ❌
+}
+
+Remove unused config files
+
+Delete if not used:
+
+.storybook/
+jest.config.js
+babel.config.js
+tailwind.config.js
+postcss.config.js
+prisma/
+
+6️⃣ Remove unused assets
+Images, fonts, videos
+npx find-unused-files
+
+Or manually check:
+
+/public/images
+/assets
+
+Unused assets increase bundle size.
+
+7️⃣ Analyze bundle (Next.js / React)
+Next.js
+npm install -D @next/bundle-analyzer
+
+Run:
+
+ANALYZE=true npm run build
+
+This shows:
+
+heavy libraries
+
+unused chunks
+
+8️⃣ Clean build & cache files
+rm -rf .next dist build coverage
+
+9️⃣ Final verification
+npm run build
+npm run lint
+npm start
+
+If all pass → project is clean ✅
+
+🔥 Advanced: One-Command Cleanup Script
+npx depcheck && \
+npm prune && \
+rm -rf node_modules package-lock.json && \
+npm install
+
+📌 What NOT to remove blindly
+
+❌ next
+❌ react / react-dom
+❌ eslint / typescript
+❌ tailwindcss (if used via classes)
+❌ postcss / autoprefixer
+❌ dotenv
+
+(depcheck may list them — verify manually)
+
+✅ Final Checklist
+
+✔ Unused dependencies removed
+✔ node_modules rebuilt
+✔ Unused imports removed
+✔ Config files cleaned
+✔ Build successful

@@ -1,0 +1,15 @@
+// import { NextResponse } from "next/server";
+// import { prisma } from "@/src/lib/prisma";
+
+// export async function GET() {
+//   try {
+//     const data = await prisma.registrations.findMany({
+//       orderBy: { id: "desc" },
+//     });
+//     console.log("log Vimal:", data);
+//     return NextResponse.json(data);
+//   } catch (err) {
+//     console.error("Fetch error:", err);
+//     return NextResponse.json({ error: true }, { status: 500 });
+//   }
+// }

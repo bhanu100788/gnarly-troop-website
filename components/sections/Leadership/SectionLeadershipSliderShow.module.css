@@ -1,0 +1,185 @@
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  padding: 0 24px; /* 👈 creates peek space */
+}
+
+.section {
+  position: relative;
+  padding: 24px 20px;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header h2 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.navDesktop {
+  display: none;
+}
+
+.navDesktop button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* VIEWPORT */
+/* .viewport {
+  overflow: hidden;
+  width: 100%;
+} */
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  padding: 0 24px; /* 👈 creates peek space */
+}
+
+/* SLIDER */
+.slider {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* CARD */
+.card {
+  padding-right: 24px;
+  box-sizing: border-box;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.slider .card {
+  opacity: 0.4;
+  transform: scale(0.96);
+}
+
+.slider .card:nth-child(n + 1) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 320px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding-top: 14px;
+}
+
+.content h3 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.role {
+  font-size: 16px;
+  margin-top: 4px;
+  color: #555;
+}
+
+.bio {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* MOBILE NAV */
+.navMobile {
+  position: absolute;
+  top: 120px;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.navMobile.left {
+  left: 12px;
+}
+
+.navMobile.right {
+  right: 12px;
+}
+
+.navMobile:disabled {
+  opacity: 0.3;
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .section {
+    max-width: 1280px;
+    margin: auto;
+  }
+
+  .navMobile {
+    display: none;
+  }
+
+  .navDesktop {
+    display: flex;
+    gap: 16px;
+  }
+
+  .imageWrapper {
+    height: 360px;
+  }
+}
+
+.profileButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+
+.profileButton:hover {
+  background: #000;
+  color: #fff;
+}
