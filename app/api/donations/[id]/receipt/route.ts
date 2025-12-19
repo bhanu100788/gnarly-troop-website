@@ -1,4 +1,5 @@
 // /app/api/donations/[id]/receipt/route.ts
+export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { getConnection } from "@/src/lib/Sqldb";
 import { generateReceiptPdf } from "@/src/lib/pdf";
