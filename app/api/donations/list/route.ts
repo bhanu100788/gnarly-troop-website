@@ -1,4 +1,5 @@
 // /app/api/donations/list/route.ts
+export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { getConnection } from "@/src/lib/Sqldb";
 
