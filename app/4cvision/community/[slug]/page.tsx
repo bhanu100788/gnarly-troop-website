@@ -4,11 +4,9 @@ import {
   largeCards,
   smallCards,
 } from "@/app/data/communityStories";
+import SocialShareFloating from "@/components/SocialShareFloating";
 
-/**
- * Next.js 16:
- * params is async → must await
- */
+
 export default async function CommunityStoryPage({
   params,
 }: {
@@ -16,16 +14,13 @@ export default async function CommunityStoryPage({
 }) {
   const { slug } = await params;
 
-  // Combine all stories into one searchable list
   const allStories = [
     featuredStory,
     ...largeCards,
     ...smallCards,
   ];
 
-  const story = allStories.find(
-    (s) => s.slug === slug
-  );
+  const story = allStories.find((s) => s.slug === slug);
 
   if (!story) return notFound();
 
@@ -38,13 +33,7 @@ export default async function CommunityStoryPage({
           padding: "64px 24px",
         }}
       >
-        <h1
-          style={{
-            fontSize: "32px",
-            fontWeight: 700,
-            marginBottom: "24px",
-          }}
-        >
+        <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>
           {story.title}
         </h1>
 
@@ -53,21 +42,24 @@ export default async function CommunityStoryPage({
           alt={story.alt}
           style={{
             width: "100%",
-            borderRadius: "16px",
-            marginBottom: "32px",
+            borderRadius: 16,
+            marginBottom: 32,
           }}
         />
 
         <div
           style={{
             whiteSpace: "pre-line",
-            fontSize: "18px",
+            fontSize: 18,
             lineHeight: 1.7,
             color: "#1f2937",
           }}
         >
           {story.body}
         </div>
+
+        {/* ✅ Social Share */}
+        <SocialShareFloating title={story.title} />
       </div>
     </section>
   );
